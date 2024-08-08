@@ -2,20 +2,20 @@
 
 internal class TotalizadorDeTributos
 {
-    public TotalizadorDeTributos(List<Conta> listaDeContasParaTributo)
+    public TotalizadorDeTributos(List<Conta> ListaDeContasParaTributo)
     {
-        ListaDeContasParaTributo = new(listaDeContasParaTributo);
+        listaDeContasParaTributo = new(ListaDeContasParaTributo);
     }
-
+    private List<Conta> listaDeContasParaTributo { get; set; }
     public List<Conta> ListaDeContasParaTributo
     {
         get
         {
-            return ListaDeContasParaTributo;
+            return listaDeContasParaTributo;
         }
         set
         {
-            int controle = ListaDeContasParaTributo.Count(conta => conta.Tipo == "Corrente" || conta.Tipo == "Poupança");
+            int controle = listaDeContasParaTributo.Count(conta => conta.Tipo == "Corrente" || conta.Tipo == "Poupança");
 
             if (controle >= 0)
             {
@@ -23,7 +23,7 @@ internal class TotalizadorDeTributos
             }
             else
             {
-                ListaDeContasParaTributo = value;
+                listaDeContasParaTributo = value;
             }
         }
     }
@@ -32,20 +32,20 @@ internal class TotalizadorDeTributos
         get
         {
             double acumulador = 0;
-            return acumulador += ListaDeContasParaTributo.Sum(conta => conta.CalculoTributo());
+            return acumulador += listaDeContasParaTributo.Sum(conta => conta.CalculoTributo());
         }
     }
 
     public void AdicionarNaListaDeContas(Conta conta)
     {
-        ListaDeContasParaTributo.Add(conta);
+        listaDeContasParaTributo.Add(conta);
     }
 
     public void ExibirTotalAcumulado()
     {
-        Console.WriteLine($"######### Exibindo Total Acumulado de Imposto");
+        Console.WriteLine($"######### Exibindo Total Acumulado de Imposto #########");
         Console.WriteLine($"Total Acumulado: {AcumuloImpostoTotal}");
-        Console.WriteLine($"Total de contas de Investimento: {ListaDeContasParaTributo.Count(conta => conta.Tipo.Equals("Investimento"))}");
-        Console.WriteLine($"Total de contas de Seguro de vida: {ListaDeContasParaTributo.Count(conta => conta.Tipo.Equals("Seguro"))}");
+        Console.WriteLine($"Total de contas de Investimento: {listaDeContasParaTributo.Count(conta => conta.Tipo.Equals("Investimento"))}");
+        Console.WriteLine($"Total de contas de Seguro de vida: {listaDeContasParaTributo.Count(conta => conta.Tipo.Equals("Seguro"))}\n\n");
     }
 }

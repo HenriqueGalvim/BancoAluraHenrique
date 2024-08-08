@@ -7,7 +7,7 @@ internal class ContaInvestimento : Conta
         Guid meuGuid = Guid.NewGuid();
         string guid = meuGuid.ToString().Substring(0, 4);
         base.Numero = guid;
-        base.Tipo = "Corrente";
+        base.Tipo = "Investimento";
     }
     public override double CalculoTributo()
     {

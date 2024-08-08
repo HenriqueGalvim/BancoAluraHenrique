@@ -47,54 +47,52 @@ internal class Conta
 
     public void Depositar(double valor)
     {
+        Console.WriteLine("\n------------- Depositando -------------\n");
         Saldo += valor;
+        Console.WriteLine($"Foi depositado R${valor} na conta {Titular}\n\n");
     }
 
     public virtual void Sacar(double valor)
     {
+        Console.WriteLine("\n------------- Sacando -------------\n");
         if (saldo <= 0)
         {
-            Console.WriteLine($"Saldo da conta {Saldo} é menor ou igual 0, impossibilitado de sacar");
+            Console.WriteLine($"Saldo da conta {Saldo} é menor ou igual 0, impossibilitado de sacar\n\n");
         }
         else
         {
             saldo -= valor;
-            Console.WriteLine("Sacado com sucesso;");
-            ExibirDetalhesConta();
+            Console.WriteLine($"Sacado R${valor} com sucesso da conta {Titular}\n\n");
         }
     }
 
     public void Transferir(Conta alvoTranferencia, double valor)
     {
+        Console.WriteLine("\n------------- Transferindo -------------\n");
         if (saldo <= 0)
         {
-            Console.WriteLine($"Saldo da conta {saldo} é menor ou igual 0, impossibilitado de realizar transferência");
+            Console.WriteLine($"Saldo da conta {saldo} é menor ou igual 0, impossibilitado de realizar transferência\n\n");
         }
         else
         {
-            Console.WriteLine("Antes transferencia");
-            ExibirDetalhesConta();
             saldo = saldo - valor;
             alvoTranferencia.saldo += valor;
-            Console.WriteLine($"Transferência realizada com sucesso para a {alvoTranferencia.Titular}");
+            Console.WriteLine($"Transferência realizada com sucesso para a {alvoTranferencia.Titular}\n\n");
         }
-        ExibirDetalhesConta();
-        Console.WriteLine("- Conta transferida -");
-        alvoTranferencia.ExibirDetalhesConta();
     }
     public virtual double CalculoTributo()
     {
-        Console.WriteLine("Calculando Tributo");
         return 0;
     }
 
     public virtual void ExibirDetalhesConta()
     {
 
-        Console.WriteLine("########## Detalhes da Conta ##########");
+        Console.WriteLine("\n########## Detalhes da Conta ##########\n");
         Console.WriteLine($"Titular da conta: {Titular}");
         Console.WriteLine($"Numero da conta: {Numero}");
         Console.WriteLine($"Tipo da conta: {Tipo}");
         Console.WriteLine($"Saldo da conta: ${saldo}");
+        Console.WriteLine("");
     }
 }
